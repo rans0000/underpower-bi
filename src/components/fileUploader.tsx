@@ -18,7 +18,7 @@ function FileUploader() {
     <div className="p-3">
       <form className="flex flex-col gap-2 w-3/12" action={formAction}>
         <Label htmlFor="file">Upload CSV</Label>
-        <Input id="file" type="file" />
+        <Input id="file" name="file" type="file" />
         <Button type="submit" className="cursor-pointer" disabled={isPending}>
           Upload
         </Button>
