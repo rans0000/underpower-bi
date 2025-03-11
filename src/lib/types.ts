@@ -1,4 +1,4 @@
 export type TUploadFormState = {
-  file: unknown;
+  file: File | null;
   status?: "error" | "success";
 };

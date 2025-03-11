@@ -1,5 +1,7 @@
 "use server";
 
+import csvParser from "csv-parser";
+import { PassThrough } from "stream";
 import { TUploadFormState } from "./types";
 
 export const uploadFile = async (
@@ -10,10 +12,18 @@ export const uploadFile = async (
   if (!file) {
     return { file, status: "error" };
   }
-  //   console.log(formData);
+
   const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-  console.log(buffer);
+  const bufferStream = new PassThrough();
+  bufferStream.end(Buffer.from(bytes));
+
+  const results: unknown[] = [];
+  bufferStream
+    .pipe(csvParser())
+    .on("data", (data: unknown) => results.push(data))
+    .on("end", () => {
+      console.log(results);
+    });
 
   return { file, status: "success" } as TUploadFormState;
 };

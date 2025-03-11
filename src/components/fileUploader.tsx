@@ -7,7 +7,7 @@ import { uploadFile } from "@/lib/actions";
 import { TUploadFormState } from "@/lib/types";
 import { useActionState } from "react";
 
-const initialValue: TUploadFormState = { file: [] };
+const initialValue: TUploadFormState = { file: null };
 
 function FileUploader() {
   const [state, formAction, isPending] = useActionState(
