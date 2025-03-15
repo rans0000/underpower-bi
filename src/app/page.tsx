@@ -1,9 +1,9 @@
-import FileUploader from "@/components/fileUploader";
+import TabsWrapper from "@/components/tabs-wrapper";
 
 export default function Home() {
   return (
     <div className="homepage-wrapper">
-      <FileUploader />
+      <TabsWrapper />
     </div>
   );
 }
