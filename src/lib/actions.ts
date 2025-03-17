@@ -10,21 +10,29 @@ export const uploadFile = async (
 ): Promise<TUploadFormState> => {
   const file: File | null = formData.get("file") as unknown as File;
   if (!file) {
-    return { file, status: "error", data: null };
+    return { file, status: "error", data: undefined };
   }
 
   const bytes = await file.arrayBuffer();
   const bufferStream = new PassThrough();
   bufferStream.end(Buffer.from(bytes));
 
-  const results: unknown[] = [];
+  const data: unknown[] = [];
   return new Promise((resolve) => {
     bufferStream
       .pipe(csvParser())
-      .on("data", (data: unknown) => results.push(data))
+      .on("data", (row: unknown) => data.push(row))
       .on("end", () => {
-        console.log(results);
-        resolve({ file, status: "success", data: results });
+        console.log(data);
+        if (data.length > 0 && data[0] instanceof Object) {
+          const headers = Object.keys(data[0]).map((label) => ({
+            label,
+            selected: false,
+          }));
+          resolve({ file, status: "success", data: { headers, data } });
+        } else {
+          resolve({ file, status: "error", data: undefined });
+        }
       });
   });
 };

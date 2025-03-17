@@ -8,19 +8,22 @@ import UploadForm from "./upload-form";
 
 function FileUploader({ changeTab }: { changeTab: Dispatch<TCurrentTab> }) {
   return (
-    <div className="p-3 flex gap-12">
-      <section className="left-wrapper flex-3/12">
+    <div className="p-3 flex gap-12 flex-wrap">
+      <section className="left-wrapper basis-3/12">
         <UploadForm />
       </section>
-      <aside className="flex-9/12">
+      <aside className="grow">
         <DisplayOriginalData />
       </aside>
-      <div>
+      <div className="w-full">
         <Button
+          variant="secondary"
           onClick={() => {
             changeTab("transform-data");
           }}
-        ></Button>
+        >
+          Next
+        </Button>
       </div>
     </div>
   );

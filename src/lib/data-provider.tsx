@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useReducer } from "react";
-import { TData, TDataAction, TState } from "./types";
+import { TData, TDataAction, TDataList, TState } from "./types";
 
 const initialReducer: TState = {};
 const initialContext: TData = { data: initialReducer, dispatch: () => {} };
@@ -10,7 +10,7 @@ export const DataContext = createContext(initialContext);
 const reducer = (state: TState, action: TDataAction) => {
   switch (action.type) {
     case "original":
-      state = { ...state, original: action.payload };
+      state = { ...state, original: action.payload as TDataList };
       break;
 
     default:

@@ -9,15 +9,15 @@ export type TUploadFormState = {
 export type TCurrentTab = "upload-file" | "transform-data";
 
 export type TDataAction = { type: "original"; payload: unknown };
-export type TTransformed =
+export type TDataList =
   | {
-      keys: { label: string; selected: boolean }[];
-      data: unknown;
+      headers: { label: string; selected: boolean }[];
+      data: unknown[];
     }
   | undefined;
 export type TState = {
-  original?: unknown | undefined;
-  transformed?: TTransformed | undefined;
+  original?: TDataList;
+  transformed?: TDataList;
 };
 export type TData = {
   data: TState;

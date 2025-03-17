@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label";
 import { TUploadFormState } from "@/lib/types";
 
 const initialValue: TUploadFormState = { file: null, data: null };
-
 function UploadForm() {
   const [state, formAction, isPending] = useActionState(
     uploadFile,
@@ -19,8 +18,8 @@ function UploadForm() {
   const { dispatch } = useContext(DataContext);
 
   useEffect(() => {
-    dispatch({ type: "original", payload: state.data });
     if (state.data) {
+      dispatch({ type: "original", payload: state.data });
     }
   }, [state.status]);
 
