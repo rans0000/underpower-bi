@@ -13,6 +13,10 @@ const reducer = (state: TState, action: TDataAction) => {
       state = { ...state, original: action.payload as TDataList };
       break;
 
+    case "transformed":
+      state = { ...state, transformed: action.payload as TDataList };
+      break;
+
     default:
       throw new Error("Unknown action type");
   }

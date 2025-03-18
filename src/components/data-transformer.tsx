@@ -1,18 +1,17 @@
 import { DataContext } from "@/lib/data-provider";
 import React, { useContext } from "react";
+import DisplayTransformedData from "./display-transformed-data";
 
 function DataTransformer() {
   const {
-    data: { original },
+    data: { transformed },
   } = useContext(DataContext);
   return (
     <div className="data-transformer-wrapper">
       <h1>DataTransformer</h1>
-      {JSON.stringify(original)}
-      --
-      {original instanceof Array &&
-        original.length > 0 &&
-        Object.keys(original[0])}
+      {transformed?.data && transformed?.data.length > 0 && (
+        <DisplayTransformedData />
+      )}
     </div>
   );
 }

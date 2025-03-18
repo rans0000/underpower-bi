@@ -1,7 +1,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
@@ -20,7 +19,6 @@ export default function DisplayOriginalData() {
       {/* {JSON.stringify(original)} */}
       {original !== null && original?.data && original.data.length > 0 && (
         <Table>
-          <TableCaption>Uploaded data.</TableCaption>
           <TableHeader>
             <TableRow>
               {original?.headers.map((header) => (
