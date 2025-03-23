@@ -25,3 +25,11 @@ export type TData = {
   data: TState;
   dispatch: ActionDispatch<[action: TDataAction]>;
 };
+
+export type TMenu = {
+  id: string;
+  top?: number | number;
+  left?: number | number;
+  right?: number | number;
+  bottom?: number | number;
+};

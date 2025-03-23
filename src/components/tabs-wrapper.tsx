@@ -7,7 +7,7 @@ import { useState } from "react";
 import DataTransformer from "./data-transformer";
 
 function TabsWrapper() {
-  const [currentTab, setCurrentTab] = useState<TCurrentTab>("upload-file");
+  const [currentTab, setCurrentTab] = useState<TCurrentTab>("transform-data");
   return (
     <div className="tabs-wrapper h-full">
       <Tabs defaultValue="account" value={currentTab} className="h-full">

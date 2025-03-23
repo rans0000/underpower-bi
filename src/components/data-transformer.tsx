@@ -10,10 +10,10 @@ function DataTransformer() {
   return (
     <div className="data-transformer-wrapper h-full">
       <h1>Data Transformer</h1>
-      {transformed?.data && transformed?.data.length > 0 && (
-        // <TransformedDataTable />
-        <TransformedDataNodeGraph />
-      )}
+      {/* {transformed?.data && transformed?.data.length > 0 && (
+        <TransformedDataTable />
+      )} */}
+      {(true || transformed) && <TransformedDataNodeGraph />}
     </div>
   );
 }
