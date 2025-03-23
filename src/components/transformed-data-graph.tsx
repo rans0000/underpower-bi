@@ -9,29 +9,25 @@ import {
   ReactFlow,
   useEdgesState,
   useNodesState,
+  useReactFlow,
 } from "@xyflow/react";
 import React, { useCallback, useRef, useState } from "react";
 
 import "@xyflow/react/dist/style.css";
 import OriginalDataNode from "./nodes/original-data-node";
-import UppercaaseNode from "./nodes/uppercaase-node";
+import UppercaseNode from "./nodes/uppercase-node";
 import NodeContextMenu from "./node-context-menu";
 import { TMenu } from "@/lib/types";
 
-const nodeTypes = { OriginalDataNode, UppercaaseNode };
+const nodeTypes = { OriginalDataNode, UppercaseNode };
+let last = 0;
 
 const initialNodes: Node[] = [
   {
-    id: "1",
+    id: "1000",
     position: { x: 0, y: 0 },
     data: { label: "1" },
     type: "OriginalDataNode",
-  },
-  {
-    id: "2",
-    position: { x: 100, y: 100 },
-    data: { label: "Uppercase" },
-    type: "UppercaaseNode",
   },
 ];
 const initialEdges: Edge[] = [];
@@ -41,7 +37,7 @@ function TransformedDataNodeGraph() {
   const [nodes, setNodes, onNodeChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgeChange] = useEdgesState(initialEdges);
   const [menu, setMenu] = useState<TMenu | null>(null);
-  console.log(setNodes);
+  const { addNodes } = useReactFlow();
 
   const onConnect: OnConnect = useCallback(
     (params) => {
@@ -53,7 +49,6 @@ function TransformedDataNodeGraph() {
   const onContextMenu: NodeMouseHandler = useCallback(
     (event, node) => {
       event.preventDefault();
-      // console.log(node);
       if (node.type !== "OriginalDataNode" || !ref.current) return;
 
       const pane = ref.current.getBoundingClientRect();
@@ -73,12 +68,31 @@ function TransformedDataNodeGraph() {
     [setMenu]
   );
 
-  const onMenuClick = useCallback(() => {
-    setMenu(null);
-  }, [setMenu]);
+  const onMenuClick = useCallback(
+    (type?: string) => {
+      switch (type) {
+        case "UppercaseNode":
+          const node: Node = {
+            id: `${++last}`,
+            position: { x: 100, y: 100 },
+            data: { label: "Uppercase" },
+            type: "UppercaseNode",
+          };
+
+          addNodes(node);
+          break;
+
+        default:
+          break;
+      }
+      setMenu(null);
+    },
+    [setMenu]
+  );
 
   return (
     <section className="transformed-data-node-graph w-full h-full">
+      {false && setNodes}
       <ReactFlow
         // fitView
         ref={ref}

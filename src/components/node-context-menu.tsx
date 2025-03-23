@@ -1,21 +1,58 @@
+import {
+  Command,
+  CommandDialog,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 import { TMenu } from "@/lib/types";
-import React from "react";
 
 type TProps = {
   menu: TMenu;
   onClick: () => void;
 };
 
+const items = [
+  {
+    group: "Text",
+    children: [
+      { title: "Upper case", value: "UppercaseNode" },
+      { title: "Lower case", value: "LowercaseNode" },
+    ],
+  },
+  {
+    group: "Data",
+    children: [
+      { title: "Type Convertion", value: "TypeCConvertionNode" },
+      { title: "Search & Replace", value: "SearchAndReplaceNode" },
+    ],
+  },
+];
+
 function NodeContextMenu(props: TProps) {
-  const { top, left, right, bottom } = props.menu;
   return (
-    <div
-      className="context-menu absolute p-4 z-40 border-2 border-gray-500 rounded-sm bg-white"
-      style={{ top, left, right, bottom }}
-      onClick={props.onClick}
-    >
-      NodeContextMenu {JSON.stringify(props)}
-    </div>
+    <CommandDialog open={!!props.menu} onOpenChange={props.onClick}>
+      <Command>
+        <CommandList>
+          {items.map((item) => (
+            <CommandGroup key={item.group} heading={item.group}>
+              {item.children.map((child) => (
+                <CommandItem key={child.value}>
+                  <div
+                    className="w-full"
+                    onClick={() => {
+                      props.onClick(child.value);
+                    }}
+                  >
+                    {child.title}
+                  </div>
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          ))}
+        </CommandList>
+      </Command>
+    </CommandDialog>
   );
 }
 
