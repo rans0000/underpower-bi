@@ -1,6 +1,6 @@
 import { DataContext } from "@/lib/data-provider";
 import React, { useContext } from "react";
-import DisplayTransformedData from "./display-transformed-data";
+import TransformedDataTable from "./transformed-data-table";
 
 function DataTransformer() {
   const {
@@ -10,7 +10,7 @@ function DataTransformer() {
     <div className="data-transformer-wrapper">
       <h1>DataTransformer</h1>
       {transformed?.data && transformed?.data.length > 0 && (
-        <DisplayTransformedData />
+        <TransformedDataTable />
       )}
     </div>
   );

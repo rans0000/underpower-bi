@@ -2,7 +2,7 @@
 
 import { TCurrentTab } from "@/lib/types";
 import { Dispatch, useContext } from "react";
-import DisplayOriginalData from "./display-original-data";
+import OriginalDataTable from "./original-data-table";
 import { Button } from "./ui/button";
 import UploadForm from "./upload-form";
 import { DataContext } from "@/lib/data-provider";
@@ -19,7 +19,7 @@ function FileUploader({ changeTab }: { changeTab: Dispatch<TCurrentTab> }) {
         <UploadForm />
       </section>
       <aside className="grow">
-        <DisplayOriginalData />
+        <OriginalDataTable />
       </aside>
       <div className="w-full">
         <Button variant="secondary" onClick={goToNextPage}>

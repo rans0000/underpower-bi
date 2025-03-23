@@ -10,12 +10,12 @@ import {
 import { DataContext } from "@/lib/data-provider";
 import { ReactNode, useContext } from "react";
 
-export default function DisplayOriginalData() {
+export default function OriginalDataTable() {
   const {
     data: { original },
   } = useContext(DataContext);
   return (
-    <div className="display-original-data">
+    <div className="original-data-table">
       {/* {JSON.stringify(original)} */}
       {original !== null && original?.data && original.data.length > 0 && (
         <Table>
