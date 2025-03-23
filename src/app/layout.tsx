@@ -13,7 +13,9 @@ export default function RootLayout({
       <html lang="en">
         <body className="flex h-svh flex-col antialiased ">
           <Header />
-          <main className="grow">{children}</main>
+          <main className="h-[calc(100svh-(--spacing(25)))] mt-15 overflow-auto">
+            {children}
+          </main>
           <Footer />
         </body>
       </html>

@@ -9,8 +9,8 @@ import DataTransformer from "./data-transformer";
 function TabsWrapper() {
   const [currentTab, setCurrentTab] = useState<TCurrentTab>("upload-file");
   return (
-    <div className="tabs-wrapper">
-      <Tabs defaultValue="account" value={currentTab}>
+    <div className="tabs-wrapper h-full">
+      <Tabs defaultValue="account" value={currentTab} className="h-full">
         <TabsList className="w-[400px] grid grid-cols-2">
           <TabsTrigger
             onClick={() => setCurrentTab("upload-file")}
